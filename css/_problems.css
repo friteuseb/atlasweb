@@ -1,0 +1,86 @@
+/* Styles for problems */
+
+/* Problems Section */
+.problems-section {
+    padding: 4rem 0;
+    background: var(--color-gray-light);
+}
+
+.problem-card {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.problem-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.problem-ecommerce {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.problem-corporate {
+    background-color: var(--color-accent-pink);
+    color: var(--color-white);
+}
+
+.problem-blog {
+    background-color: var(--color-accent-purple);
+    color: var(--color-white);
+}
+
+.problem-icon {
+    margin-bottom: 1.5rem;
+}
+
+.problem-icon img {
+    max-width: 150px;
+    height: auto;
+}
+
+.problem-title {
+    font-family: var(--font-arvo);
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+.problem-description {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.problem-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.problem-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.problem-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: inherit;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .problem-card {
+        margin-bottom: 1rem;
+    }
+}

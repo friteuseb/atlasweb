@@ -1,0 +1,72 @@
+/* Styles for demo */
+
+/* Demo Section */
+.demo-section {
+    padding: 4rem 0;
+    background: var(--color-white);
+}
+
+.demo-placeholder {
+    background: var(--color-gray-light);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    text-align: center;
+    border: 5px solid var(--color-gray-light);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Demo Video Styles */
+.demo-video-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--color-white);
+    padding: 8px;
+}
+
+.demo-video-container:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.demo-video-container iframe {
+    border-radius: var(--border-radius-sm);
+    border: none;
+}
+
+/* Demo Content - Style simple et épuré */
+.demo-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.demo-content p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-black);
+    margin-bottom: 1.5rem;
+}
+
+.demo-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .demo-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .demo-content p {
+        font-size: 1rem;
+    }
+
+    .demo-video-container {
+        padding: 4px;
+    }
+}

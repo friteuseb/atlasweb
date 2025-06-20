@@ -1,0 +1,71 @@
+/* Styles for about */
+
+/* About Section */
+.about-section {
+    padding: 4rem 0;
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.founder-image {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.founder-image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.founder-info {
+    margin-bottom: 2rem;
+}
+
+.founder-name {
+    font-family: var(--font-arvo);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.founder-title {
+    font-family: var(--font-inter);
+    font-size: 1.125rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.credentials-list {
+    list-style: none;
+    padding: 0;
+}
+
+.credentials-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.credentials-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-white);
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-section .row {
+        text-align: center;
+    }
+    
+    .credentials-list {
+        text-align: left;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}

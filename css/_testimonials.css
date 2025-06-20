@@ -1,0 +1,95 @@
+/* Styles for testimonials */
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 4rem 0;
+    background: var(--color-white);
+}
+
+.testimonial-card {
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.testimonial-ecommerce {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.testimonial-corporate {
+    background-color: var(--color-accent-pink);
+    color: var(--color-white);
+}
+
+.testimonial-blog {
+    background-color: var(--color-accent-purple);
+    color: var(--color-white);
+}
+
+.testimonial-icon {
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-icon img {
+    max-width: 150px;
+    height: auto;
+}
+
+.testimonial-type {
+    font-family: var(--font-arvo);
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-details {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-result {
+    margin-bottom: 1.5rem;
+}
+
+.result-number {
+    font-family: var(--font-roboto);
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.result-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.testimonial-metrics {
+    font-family: var(--font-inter);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.testimonial-metrics div {
+    margin-bottom: 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .testimonial-card {
+        margin-bottom: 1rem;
+    }
+    
+    .result-number {
+        font-size: 2.5rem;
+    }
+}

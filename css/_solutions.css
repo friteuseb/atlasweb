@@ -1,0 +1,166 @@
+/* Styles for solutions */
+
+/* Solutions Section */
+.solutions-section {
+    padding: 4rem 0;
+    background: var(--color-gray-light);
+}
+
+.solution-card {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.solution-premium {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.solution-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.solution-icon img {
+    max-width: 107px;
+    height: auto;
+}
+
+.solution-name {
+    font-family: var(--font-arvo);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+.solution-tagline {
+    font-size: 1rem;
+    color: inherit;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.solution-subtitle {
+    font-family: var(--font-inter);
+    font-weight: 700;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    margin-bottom: 1.5rem;
+    color: inherit;
+}
+
+.solution-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.solution-features li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.solution-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.solution-premium .solution-features li::before {
+    color: var(--color-white);
+}
+
+.solution-results {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 1.5rem;
+}
+
+.solution-results-premium {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.solution-results h4 {
+    font-family: var(--font-inter);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.9rem;
+}
+
+.solution-results-premium .result-item {
+    border-bottom-color: rgba(0,0,0,0.1);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-label {
+    font-weight: normal;
+}
+
+.result-value {
+    font-weight: 700;
+}
+
+.solution-pricing {
+    text-align: center;
+}
+
+.price {
+    font-family: var(--font-arvo);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.price-amount {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.price-details {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .solution-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .solution-card {
+        margin-bottom: 2rem;
+    }
+}

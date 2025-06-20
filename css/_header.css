@@ -1,0 +1,21 @@
+/* Styles for header */
+
+/* Header */
+.header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-brand img {
+    height: 44px;
+    width: auto;
+}

@@ -11,6 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Inter:wght@400;500;700&family=Arvo:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <!-- Custom CSS -->
     <link href="styles.css" rel="stylesheet">
 </head>
@@ -320,6 +321,315 @@
         </div>
     </section>
 
+
+        <!-- Public Sector Hero Section -->
+    <section class="public-hero-section">
+        <div class="container">
+            <div class="public-hero-content">
+                <h2 class="public-hero-title">ATLAS pour le Secteur Public</h2>
+                <p class="public-hero-subtitle">
+                    Transformez vos silos administratifs en écosystème connecté<br>
+                    pour une meilleure efficacité publique
+                </p>
+                
+                <div class="democratic-challenge">
+                    <div class="challenge-stat">40%</div>
+                    <p class="challenge-text">
+                        des Français renoncent chaque année à leurs droits sociaux, non par manque de légitimité, 
+                        mais par <strong>complexité du parcours administratif</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation Section -->
+    <section class="transformation-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">De la Fragmentation à l'Unification</h2>
+                <p class="section-subtitle">ATLAS transforme vos contenus publics en écosystème interconnecté</p>
+            </div>
+
+            <div class="before-after-container">
+                <!-- Avant -->
+                <div class="before-card">
+                    <div class="card-header">
+                        <span class="card-icon">❌</span>
+                        <h3 class="card-title">AVANT : Silos Fragmentés</h3>
+                    </div>
+                    
+                    <div class="network-container">
+                        <svg class="network-svg" id="network-before"></svg>
+                    </div>
+
+                    <div class="impact-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Usager perdu entre plateformes</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">30%</span>
+                            <span class="stat-label">Sessions > 5 min pour trouver l'info</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flèche -->
+                <div class="transformation-arrow">
+                    ➡️
+                </div>
+
+                <!-- Après -->
+                <div class="after-card">
+                    <div class="card-header">
+                        <span class="card-icon">✅</span>
+                        <h3 class="card-title">APRÈS : Réseau Unifié</h3>
+                    </div>
+                    
+                    <div class="network-container">
+                        <svg class="network-svg" id="network-after"></svg>
+                    </div>
+
+                    <p style="text-align: center; margin: 1rem 0; font-weight: 500; color: var(--color-success);">
+                        🔗 Écosystème connecté des services publics<br>
+                        <small style="color: var(--color-dark);">Liens bidirectionnels intelligents entre sites gouvernementaux</small>
+                    </p>
+
+                    <div class="impact-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">4 min</span>
+                            <span class="stat-label">Parcours fluide et guidé</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">+50%</span>
+                            <span class="stat-label">Visites sur pages pertinentes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-grid">
+                <!-- Souveraineté -->
+                <div class="sovereignty-card">
+                    <h3 class="sovereignty-title">🇫🇷 Souveraineté & Transparence</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        Solution <span class="highlight-stat">100% française</span>, 
+                        <span class="highlight-stat">open source</span>, et hébergée sur le territoire national. 
+                        Aucune dépendance aux GAFAM. Aucun transfert de données sensibles.
+                    </p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">
+                        Le code source sera disponible sous licence <strong>CeCILL</strong>, 
+                        garantissant la transparence totale et la réutilisabilité par d'autres administrations.
+                    </p>
+                </div>
+
+                <!-- Mission de service public -->
+                <div>
+                    <h3 style="font-family: var(--font-arvo); font-size: 1.75rem; margin-bottom: 1.5rem;">
+                        Une Mission de Service Public
+                    </h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        ATLAS ne vise pas la performance commerciale, mais <strong>l'efficacité publique</strong>. 
+                        Notre objectif est simple :
+                    </p>
+                    
+                    <ul class="objectives-list">
+                        <li>Réduire le non-recours aux droits de <span class="highlight-stat">40% à 15%</span></li>
+                        <li>Diminuer la charge sur vos agents de <span class="highlight-stat">30%</span> (moins d'appels, moins de recherches)</li>
+                        <li>Améliorer la satisfaction citoyenne sans investissement lourd</li>
+                    </ul>
+
+                    <div style="background: var(--color-gray-light); padding: 1.5rem; border-radius: var(--border-radius-sm); margin-top: 2rem;">
+                        <h4 style="font-family: var(--font-inter); font-weight: 700; margin-bottom: 1rem;">
+                            Innovation au service de la continuité
+                        </h4>
+                        <p style="margin: 0; font-style: italic;">
+                            "ATLAS ne remplace rien. Il valorise l'existant. Vos contenus actuels, vos sites web, 
+                            vos équipes... tout reste en place. Nous ajoutons simplement l'intelligence relationnelle qui manquait."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Données des sites publics
+        const sites = [
+            { id: 'caf', name: 'CAF', fullName: 'Allocations', color: '#2196F3', x: 0, y: -70 },
+            { id: 'france-travail', name: 'France\nTravail', fullName: 'Emploi', color: '#FF9800', x: 70, y: 0 },
+            { id: 'service-public', name: 'Service\nPublic', fullName: 'Démarches', color: '#4CAF50', x: 0, y: 70 },
+            { id: 'impots', name: 'Impôts', fullName: 'Fiscalité', color: '#E91E63', x: -70, y: 0 }
+        ];
+
+        // Créer toutes les combinaisons de liens possibles
+        const links = [];
+        for (let i = 0; i < sites.length; i++) {
+            for (let j = i + 1; j < sites.length; j++) {
+                links.push({
+                    source: sites[i].id,
+                    target: sites[j].id,
+                    sourceNode: sites[i],
+                    targetNode: sites[j]
+                });
+            }
+        }
+
+        function createNetwork(svgId, showLinks = true) {
+            const svg = d3.select(`#${svgId}`);
+            const width = 300;
+            const height = 300;
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            // Nettoyer le SVG
+            svg.selectAll('*').remove();
+
+            // Créer le groupe principal
+            const g = svg.append('g')
+                .attr('transform', `translate(${centerX}, ${centerY})`);
+
+            // Ajouter les liens si demandé
+            if (showLinks) {
+                const linkElements = g.selectAll('.link')
+                    .data(links)
+                    .enter()
+                    .append('line')
+                    .attr('class', 'link-line')
+                    .attr('stroke', '#28A745')
+                    .attr('stroke-width', 2)
+                    .attr('opacity', 0.6)
+                    .attr('x1', d => d.sourceNode.x)
+                    .attr('y1', d => d.sourceNode.y)
+                    .attr('x2', d => d.targetNode.x)
+                    .attr('y2', d => d.targetNode.y);
+
+                // Animation d'apparition des liens avec effet de tracé
+                linkElements
+                    .attr('stroke-dasharray', function() {
+                        const length = this.getTotalLength();
+                        return length + " " + length;
+                    })
+                    .attr('stroke-dashoffset', function() {
+                        return this.getTotalLength();
+                    })
+                    .transition()
+                    .duration(1500)
+                    .delay((d, i) => i * 300)
+                    .attr('stroke-dashoffset', 0)
+                    .on('end', function() {
+                        // Supprimer les tirets après l'animation
+                        d3.select(this).attr('stroke-dasharray', 'none');
+                    });
+            }
+
+            // Créer les nœuds
+            const nodeGroups = g.selectAll('.node')
+                .data(sites)
+                .enter()
+                .append('g')
+                .attr('class', 'node')
+                .attr('transform', d => `translate(${d.x}, ${d.y})`);
+
+            // Cercles des nœuds avec animation
+            nodeGroups.append('circle')
+                .attr('class', 'node-circle')
+                .attr('r', 0)
+                .attr('fill', showLinks ? '#fff' : '#f8f9fa')
+                .attr('stroke', d => showLinks ? d.color : '#dee2e6')
+                .attr('stroke-width', showLinks ? 3 : 2)
+                .style('filter', showLinks ? 'drop-shadow(0 3px 6px rgba(0,0,0,0.15))' : 'none')
+                .transition()
+                .duration(800)
+                .delay((d, i) => i * 200)
+                .attr('r', showLinks ? 28 : 24);
+
+            // Texte des nœuds avec gestion multi-lignes
+            nodeGroups.each(function(d) {
+                const group = d3.select(this);
+                const lines = d.name.split('\n');
+                
+                lines.forEach((line, i) => {
+                    group.append('text')
+                        .attr('class', 'node-text')
+                        .attr('y', (i - (lines.length - 1) / 2) * 10)
+                        .text(line)
+                        .style('font-size', showLinks ? '11px' : '10px')
+                        .style('font-weight', '600')
+                        .style('fill', showLinks ? '#333' : '#6c757d')
+                        .style('opacity', 0)
+                        .transition()
+                        .duration(500)
+                        .delay((d, i) => i * 200 + 400)
+                        .style('opacity', 1);
+                });
+            });
+
+            // Effet de pulsation pour les nœuds connectés
+            if (showLinks) {
+                nodeGroups.selectAll('.node-circle')
+                    .transition()
+                    .duration(2000)
+                    .delay(2000)
+                    .attr('r', 30)
+                    .transition()
+                    .duration(2000)
+                    .attr('r', 28)
+                    .on('end', function repeat() {
+                        d3.select(this)
+                            .transition()
+                            .duration(3000)
+                            .attr('r', 30)
+                            .transition()
+                            .duration(3000)
+                            .attr('r', 28)
+                            .on('end', repeat);
+                    });
+            }
+        }
+
+        // Initialiser les réseaux au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Délai pour s'assurer que D3 est chargé
+            setTimeout(() => {
+                createNetwork('network-before', false); // Sites isolés
+                
+                // Créer le réseau connecté avec un délai pour l'effet dramatique
+                setTimeout(() => {
+                    createNetwork('network-after', true); // Réseau complet
+                }, 1000);
+            }, 100);
+        });
+
+        // Observer d'intersection pour relancer l'animation quand on scroll
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const svgId = entry.target.querySelector('svg').id;
+                        if (svgId === 'network-before') {
+                            createNetwork('network-before', false);
+                        } else if (svgId === 'network-after') {
+                            setTimeout(() => {
+                                createNetwork('network-after', true);
+                            }, 500);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.network-container').forEach(container => {
+                observer.observe(container);
+            });
+        }
+    </script>
+    
     <!-- Testimonials Section -->
     <section class="testimonials-section">
         <div class="container">

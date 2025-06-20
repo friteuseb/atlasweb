@@ -1,0 +1,28 @@
+/* Styles for buttons */
+
+/* Buttons */
+.btn {
+    border-radius: var(--border-radius-lg);
+    font-weight: 500;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: #4a73a8;
+    border-color: #4a73a8;
+    transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+    border-radius: 0;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    text-transform: capitalize;
+}

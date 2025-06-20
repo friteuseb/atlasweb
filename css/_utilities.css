@@ -1,0 +1,65 @@
+/* Styles for utilities */
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Utilities */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #4a73a8 100%);
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #7a8320 100%);
+}
+
+/* Focus states for accessibility */
+.btn:focus,
+.navbar-brand:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header-fixed,
+    .btn {
+        display: none !important;
+    }
+    
+    .hero-section,
+    .problems-section,
+    .benefits-section,
+    .solutions-section,
+    .testimonials-section,
+    .research-section,
+    .demo-section,
+    .about-section {
+        padding: 1rem 0 !important;
+        background: white !important;
+        color: black !important;
+    }
+    
+    .problem-card,
+    .testimonial-card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #ccc !important;
+    }
+}
