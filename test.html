@@ -1,19 +1,14 @@
-console.log('Création des nœuds:', this.nodes.length);
-                console.log('Création des liens:', this.links.length);
-                console.log('Exemple de nœud:', this.nodes[0]);
-                console.log('Exemple de lien:', this.links[0]);<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="ATLAS - Maillage sémantique intelligent pour optimiser votre SEO">
     <meta name="robots" content="noindex">
-    <title>Atlas - Maillage sémantique intelligent</title>
+    <title>Atlas - Maillage sémillage intelligent</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Inter:wght@400;500;700&family=Arvo:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Inter:wght@400;500;700&family=Arvo:wght@44&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     
     <style>
@@ -76,11 +71,14 @@ console.log('Création des nœuds:', this.nodes.length);
 
         /* Hero Section avec animation de fond */
         .hero-section {
-            padding-top: 120px;
-            padding-bottom: 48px;
+            padding-top: 120px; /* Space for fixed header */
+            padding-bottom: 48px; /* Standard padding bottom */
             background: var(--color-white);
             position: relative;
             overflow: hidden;
+            min-height: 80vh; /* Make hero section take more vertical space */
+            display: flex; /* Use flex to align content vertically */
+            align-items: center; /* Center content vertically */
         }
 
         .hero-network-background {
@@ -90,21 +88,22 @@ console.log('Création des nœuds:', this.nodes.length);
             width: 100%;
             height: 100%;
             z-index: 1;
-            opacity: 0.5;
-            pointer-events: none;
+            opacity: 0.5; /* Default opacity */
+            /* pointer-events: none; - Removed to allow potential D3 interactions if desired on background, though D3 handles its own events */
         }
 
         .hero-content-wrapper {
             position: relative;
             z-index: 10;
+            /* Ensure content wrapper fills available space to allow background to stretch */
+            min-height: calc(100vh - 120px - 48px); 
+            display: flex;
+            align-items: center;
         }
 
-        .hero-image {
-            /* Pas de fond - laisse l'animation visible */
-        }
-
-        .hero-content {
-            /* Pas de fond - laisse l'animation visible */
+        /* Adjust row inside hero section to not limit height if not needed */
+        .hero-section .row {
+            min-height: unset; 
         }
 
         .hero-image img {
@@ -137,7 +136,6 @@ console.log('Création des nœuds:', this.nodes.length);
         }
 
         /* Typography */
-        /* Styles déplacés vers les sections spécifiques hero-title et hero-subtitle */
 
         /* Buttons */
         .btn {
@@ -170,22 +168,19 @@ console.log('Création des nœuds:', this.nodes.length);
         /* Animation des nœuds */
         .network-node {
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .network-node:hover {
-            transform: scale(1.2);
-        }
-
-        .network-link {
-            stroke-width: 3;
-            stroke-opacity: 0.7;
         }
 
         .network-node-circle {
             stroke-width: 3;
-            stroke-opacity: 1;
+            transition: all 0.2s ease; /* Smooth transitions for hover effects */
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            fill-opacity: 0.4; /* Base fill opacity */
+        }
+        
+        .network-link {
+            stroke-width: 3;
+            stroke-opacity: 0.7; /* Base stroke opacity */
+            transition: stroke-opacity 0.2s ease, stroke-width 0.2s ease, stroke 0.2s ease; /* Added stroke transition */
         }
 
         .network-node-text {
@@ -194,8 +189,9 @@ console.log('Création des nœuds:', this.nodes.length);
             font-weight: 700;
             text-anchor: middle;
             dominant-baseline: central;
-            pointer-events: none;
+            pointer-events: none; /* Do not block mouse events on the circle */
             filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.9));
+            transition: opacity 0.2s ease; /* Smooth text appearance */
         }
 
         /* Responsive Design */
@@ -208,7 +204,6 @@ console.log('Création des nœuds:', this.nodes.length);
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header-fixed">
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
@@ -222,16 +217,13 @@ console.log('Création des nœuds:', this.nodes.length);
         </nav>
     </header>
 
-    <!-- Hero Section avec animation de réseau en arrière-plan -->
     <section class="hero-section">
-        <!-- Animation de réseau en arrière-plan -->
         <div class="hero-network-background">
             <svg id="hero-network" width="100%" height="100%"></svg>
         </div>
         
-        <!-- Contenu principal -->
         <div class="container hero-content-wrapper">
-            <div class="row align-items-center min-vh-100">
+            <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-image text-center mb-4 mb-lg-0">
                         <img src="/medias/hero-illustration.svg" alt="Maillage sémantique" class="img-fluid">
@@ -267,130 +259,173 @@ console.log('Création des nœuds:', this.nodes.length);
             }
 
             init() {
-                // Créer les nœuds avec des termes liés au web sémantique
                 const nodeTerms = [
                     'SEO', 'Contenu', 'Liens', 'Mots-clés', 'Structure', 'Analyse',
                     'Optimisation', 'Trafic', 'Pages', 'Indexation', 'Algorithme',
                     'Sémantique', 'Pertinence', 'Autorité', 'Backlinks', 'Crawl',
                     'Meta', 'Schema', 'UX', 'Performance', 'Mobile', 'Local',
-                    'Voice', 'Featured', 'SERP', 'CTR', 'Bounce', 'Conversion'
+                    'Voice', 'Featured', 'SERP', 'CTR', 'Bounce', 'Conversion',
+                    'Données', 'Qualité', 'Expérience', 'Engagement', 'Visibilité',
+                    'Stratégie', 'Graphe', 'Entités', 'Knowledge Graph', 'Recherche Vocale',
+                    'Topic Cluster', 'Cocoon Sémantique', 'Intention', 'User Journey', 'Contenu Pilier', 'Maillage Interne',
+                    'Crawling', 'Ranking', 'Snippet', 'E-A-T', 'Core Web Vitals', 'User Experience'
+                ];
+                
+                const colors = [
+                    'var(--color-primary)', 
+                    'var(--color-secondary)', 
+                    'var(--color-accent-pink)', 
+                    'var(--color-accent-purple)', 
+                    '#2E86AB', 
+                    '#FF6B35', 
+                    '#4ECDC4', 
+                    '#45B7D1'  
                 ];
 
-                // Générer des nœuds avec positions aléatoires
-                this.nodes = nodeTerms.slice(0, 25).map((term, i) => ({
+                this.nodes = nodeTerms.map((term, i) => ({
                     id: i,
                     name: term,
                     x: Math.random() * this.width,
                     y: Math.random() * this.height,
-                    radius: Math.random() * 10 + 15
+                    color: colors[i % colors.length] 
                 }));
 
-                // Générer des liens aléaoires entre les nœuds
                 this.links = [];
                 for (let i = 0; i < this.nodes.length; i++) {
-                    const numConnections = Math.floor(Math.random() * 3) + 1;
+                    const numConnections = Math.floor(Math.random() * 4) + 1; 
                     for (let j = 0; j < numConnections; j++) {
-                        const targetIndex = Math.floor(Math.random() * this.nodes.length);
-                        if (targetIndex !== i) {
-                            this.links.push({
-                                source: this.nodes[i],
-                                target: this.nodes[targetIndex]
-                            });
+                        let targetIndex = Math.floor(Math.random() * this.nodes.length);
+                        while (targetIndex === i || this.links.some(l => 
+                            (l.source.id === this.nodes[i].id && l.target.id === this.nodes[targetIndex].id) ||
+                            (l.source.id === this.nodes[targetIndex].id && l.target.id === this.nodes[i].id)
+                        )) {
+                            targetIndex = Math.floor(Math.random() * this.nodes.length);
                         }
+                        this.links.push({
+                            source: this.nodes[i].id, 
+                            target: this.nodes[targetIndex].id
+                        });
                     }
                 }
+
+                this.nodes.forEach(node => {
+                    node.degree = this.links.filter(link => link.source === node.id || link.target === node.id).length;
+                    node.radius = 15 + Math.min(node.degree * 1.5, 30); 
+                });
 
                 this.createVisualization();
             }
 
             createVisualization() {
-                // Nettoyer le SVG et arrêter toute simulation existante
                 this.svg.selectAll('*').remove();
                 if (this.simulation) {
                     this.simulation.stop();
                 }
                 
-                // Configurer les dimensions
                 this.svg
                     .attr('width', this.width)
                     .attr('height', this.height);
 
-                // Créer la simulation de force - optimisée pour un réseau bien connecté
                 this.simulation = d3.forceSimulation(this.nodes)
-                    .force('link', d3.forceLink(this.links).distance(100).strength(0.3))
-                    .force('charge', d3.forceManyBody().strength(-200))
+                    .force('link', d3.forceLink(this.links).id(d => d.id).distance(180).strength(0.4)) 
+                    .force('charge', d3.forceManyBody().strength(-500)) 
                     .force('center', d3.forceCenter(this.width / 2, this.height / 2))
-                    .force('collision', d3.forceCollide().radius(d => d.radius + 25))
+                    .force('collision', d3.forceCollide().radius(d => d.radius + 20)) 
                     .force('boundary', this.boundaryForce.bind(this))
-                    .alpha(0.8)
-                    .alphaDecay(0.02);
+                    .alpha(0.8) 
+                    .alphaDecay(0.005); 
 
-                // Animation d'apparition des liens - correction
                 const linkElements = this.svg.selectAll('.network-link')
                     .data(this.links)
                     .enter()
                     .append('line')
                     .attr('class', 'network-link')
-                    .attr('stroke', d => d.color)
+                    .attr('stroke', d => d.source.color) // Links initially colored by source node
                     .attr('stroke-width', 3)
-                    .attr('stroke-opacity', 0.7)
-                    .attr('opacity', 1) // Directement visible
-                    .attr('x1', d => d.source.x)
-                    .attr('y1', d => d.source.y)
-                    .attr('x2', d => d.target.x)
-                    .attr('y2', d => d.target.y);
+                    .attr('stroke-opacity', 0.7);
 
-                // Créer les nœuds
                 const nodeGroups = this.svg.selectAll('.network-node')
                     .data(this.nodes)
                     .enter()
                     .append('g')
                     .attr('class', 'network-node');
 
-                // Ajouter les cercles des nœuds avec couleurs - correction
-                const circles = nodeGroups.append('circle')
+                nodeGroups.append('circle')
                     .attr('class', 'network-node-circle')
                     .attr('r', d => d.radius)
                     .attr('fill', d => {
-                        // Conversion manuelle en RGBA pour compatibilité
-                        const color = d.color;
-                        if (color === '#5480BA') return 'rgba(84, 128, 186, 0.4)';
-                        if (color === '#8F9424') return 'rgba(143, 148, 36, 0.4)';
-                        if (color === '#E04580') return 'rgba(224, 69, 128, 0.4)';
-                        if (color === '#6B367D') return 'rgba(107, 54, 125, 0.4)';
-                        if (color === '#2E86AB') return 'rgba(46, 134, 171, 0.4)';
-                        if (color === '#FF6B35') return 'rgba(255, 107, 53, 0.4)';
-                        if (color === '#4ECDC4') return 'rgba(78, 205, 196, 0.4)';
-                        if (color === '#45B7D1') return 'rgba(69, 183, 209, 0.4)';
-                        return 'rgba(84, 128, 186, 0.4)'; // fallback
+                        const hex = d.color.startsWith('var(') ? getComputedStyle(document.documentElement).getPropertyValue(d.color.slice(4, -1)) : d.color;
+                        const r = parseInt(hex.slice(1, 3), 16);
+                        const g = parseInt(hex.slice(3, 5), 16);
+                        const b = parseInt(hex.slice(5, 7), 16);
+                        return `rgba(${r}, ${g}, ${b}, 0.4)`; 
                     })
-                    .attr('stroke', d => d.color)
+                    .attr('stroke', d => d.color) 
                     .attr('stroke-width', 3);
 
-                // Ajouter les événements de survol - correction
-                circles.on('mouseover', function(event, d) {
-                        d3.select(this).transition()
-                            .duration(200)
-                            .attr('r', d.radius * 1.3);
-                    })
-                    .on('mouseout', function(event, d) {
-                        d3.select(this).transition()
-                            .duration(200)
-                            .attr('r', d.radius);
-                    });
-
-                // Ajouter le texte des nœuds avec couleurs
                 nodeGroups.append('text')
                     .attr('class', 'network-node-text')
                     .attr('fill', d => d.color)
                     .text(d => d.name)
-                    .style('opacity', 0)
-                    .transition()
-                    .duration(500)
-                    .delay((d, i) => i * 50 + 400)
-                    .style('opacity', 1);
+                    .style('opacity', 0); 
 
-                // Animation continue
+                nodeGroups.on('mouseover', (event, d) => {
+                        // Node hover effects
+                        d3.select(event.currentTarget).select('circle').transition()
+                            .duration(200)
+                            .attr('r', d.radius * 1.3)
+                            .attr('stroke-width', 5)
+                            .attr('fill-opacity', 0.8);
+
+                        d3.select(event.currentTarget).select('text').transition()
+                            .duration(200)
+                            .style('opacity', 1);
+
+                        // Link and other node highlighting
+                        linkElements.attr('stroke-opacity', link_d =>
+                            (link_d.source.id === d.id || link_d.target.id === d.id) ? 1 : 0.05 // Highlight connected links, nearly hide others
+                        ).attr('stroke-width', link_d =>
+                            (link_d.source.id === d.id || link_d.target.id === d.id) ? 5 : 1 // Thicker connected links, very thin others
+                        ).attr('stroke', link_d =>
+                            (link_d.source.id === d.id || link_d.target.id === d.id) ? d.color : (link_d.source.color || 'gray') // Links adopt hovered node's color
+                        );
+                        
+                        nodeGroups.selectAll('.network-node-circle').attr('fill-opacity', node_d => {
+                            if (node_d.id === d.id) return 0.8; 
+                            const isConnected = linkElements.data().some(link =>
+                                (link.source.id === d.id && link.target.id === node_d.id) ||
+                                (link.target.id === d.id && link.source.id === node_d.id)
+                            );
+                            return isConnected ? 0.6 : 0.1; // Highlight connected nodes, dim others
+                        });
+                        nodeGroups.selectAll('.network-node-text').style('opacity', node_d => {
+                            if (node_d.id === d.id) return 1; 
+                            const isConnected = linkElements.data().some(link =>
+                                (link.source.id === d.id && link.target.id === node_d.id) ||
+                                (link.target.id === d.id && link.source.id === node_d.id)
+                            );
+                            return isConnected ? 1 : 0; 
+                        });
+
+                    })
+                    .on('mouseout', (event, d) => {
+                        // Reset node
+                        d3.select(event.currentTarget).select('circle').transition()
+                            .duration(200)
+                            .attr('r', d.radius)
+                            .attr('stroke-width', 3)
+                            .attr('fill-opacity', 0.4);
+
+                        d3.select(event.currentTarget).select('text').transition()
+                            .duration(200)
+                            .style('opacity', 0);
+
+                        // Reset all links and nodes
+                        linkElements.attr('stroke-opacity', 0.7).attr('stroke-width', 3).attr('stroke', link_d => link_d.source.color);
+                        nodeGroups.selectAll('.network-node-circle').attr('fill-opacity', 0.4);
+                        nodeGroups.selectAll('.network-node-text').style('opacity', 0);
+                    });
+
                 this.simulation.on('tick', () => {
                     linkElements
                         .attr('x1', d => d.source.x)
@@ -402,35 +437,32 @@ console.log('Création des nœuds:', this.nodes.length);
                         .attr('transform', d => `translate(${d.x}, ${d.y})`);
                 });
 
-                // Effet de respiration pour les nœuds
                 this.addBreathingEffect(nodeGroups);
             }
 
             boundaryForce() {
-                const margin = 50;
+                const margin = 20; 
                 for (let node of this.nodes) {
-                    if (node.x < margin) node.x = margin;
-                    if (node.x > this.width - margin) node.x = this.width - margin;
-                    if (node.y < margin) node.y = margin;
-                    if (node.y > this.height - margin) node.y = this.height - margin;
+                    node.x = Math.max(margin, Math.min(this.width - margin, node.x));
+                    node.y = Math.max(margin, Math.min(this.height - margin, node.y));
                 }
             }
 
             addBreathingEffect(nodeGroups) {
                 nodeGroups.selectAll('.network-node-circle')
                     .transition()
-                    .duration(3000 + Math.random() * 2000)
-                    .attr('r', d => d.radius * 1.2)
+                    .duration(4000 + Math.random() * 3000) 
+                    .attr('r', d => d.radius * 1.1) 
                     .transition()
-                    .duration(3000 + Math.random() * 2000)
+                    .duration(4000 + Math.random() * 3000)
                     .attr('r', d => d.radius)
                     .on('end', function repeat() {
                         d3.select(this)
                             .transition()
-                            .duration(3000 + Math.random() * 2000)
-                            .attr('r', d => d.radius * 1.2)
+                            .duration(4000 + Math.random() * 3000)
+                            .attr('r', d => d.radius * 1.1)
                             .transition()
-                            .duration(3000 + Math.random() * 2000)
+                            .duration(4000 + Math.random() * 3000)
                             .attr('r', d => d.radius)
                             .on('end', repeat);
                     });
@@ -446,38 +478,35 @@ console.log('Création des nœuds:', this.nodes.length);
                         .attr('height', this.height);
                     
                     if (this.simulation) {
-                        this.simulation.stop(); // Arrêter avant de redémarrer
+                        this.simulation.stop();
                         this.simulation
                             .force('center', d3.forceCenter(this.width / 2, this.height / 2))
-                            .alpha(0.3)
+                            .alpha(0.3) 
                             .restart();
                     }
                 });
             }
         }
 
-        // Variable globale pour éviter les instances multiples
         let networkInstance = null;
 
-        // Initialiser l'animation au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                if (!networkInstance) { // Ne créer qu'une seule instance
+                if (!networkInstance) {
                     networkInstance = new NetworkAnimation();
                 }
             }, 100);
         });
 
-                // Observer d'intersection pour optimiser les performances
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const networkSvg = entry.target.querySelector('#hero-network');
                     if (networkSvg) {
                         if (entry.isIntersecting) {
-                            networkSvg.style.opacity = '1';
+                            networkSvg.style.opacity = '0.5'; 
                         } else {
-                            networkSvg.style.opacity = '0.3';
+                            networkSvg.style.opacity = '0.1'; 
                         }
                     }
                 });
@@ -489,18 +518,14 @@ console.log('Création des nœuds:', this.nodes.length);
             }
         }
 
-        // Debug : ajouter une bordure temporaire pour voir l'animation
         setTimeout(() => {
             const networkBg = document.querySelector('.hero-network-background');
             if (networkBg) {
                 console.log('Animation de réseau chargée et visible');
-                // Optionnel : ajouter une bordure temporaire pour debug
-                // networkBg.style.border = '2px solid red';
             }
         }, 2000);
     </script>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

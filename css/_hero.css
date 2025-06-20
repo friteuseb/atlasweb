@@ -1,11 +1,13 @@
-
 /* Hero Section avec animation de fond */
 .hero-section {
-    padding-top: 120px;
-    padding-bottom: 48px;
+    padding-top: 120px; /* Space for fixed header */
+    padding-bottom: 48px; /* Standard padding bottom */
     background: var(--color-white);
     position: relative;
     overflow: hidden;
+    min-height: 80vh; /* Make hero section take more vertical space */
+    display: flex; /* Use flex to align content vertically */
+    align-items: center; /* Center content vertically */
 }
 
 .hero-network-background {
@@ -15,21 +17,22 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0.5;
-    pointer-events: none;
+    opacity: 0.5; /* Default opacity */
+    /* pointer-events: none; - Removed to allow potential D3 interactions if desired on background, though D3 handles its own events */
 }
 
 .hero-content-wrapper {
     position: relative;
     z-index: 10;
+    /* Ensure content wrapper fills available space to allow background to stretch */
+    min-height: calc(100vh - 120px - 48px); 
+    display: flex;
+    align-items: center;
 }
 
-.hero-image {
-    /* Pas de fond - laisse l'animation visible */
-}
-
-.hero-content {
-    /* Pas de fond - laisse l'animation visible */
+/* Adjust row inside hero section to not limit height if not needed */
+.hero-section .row {
+    min-height: unset; 
 }
 
 .hero-image img {
@@ -62,7 +65,6 @@
 }
 
 /* Typography */
-/* Styles déplacés vers les sections spécifiques hero-title et hero-subtitle */
 
 /* Buttons */
 .btn {
@@ -95,22 +97,19 @@
 /* Animation des nœuds */
 .network-node {
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.network-node:hover {
-    transform: scale(1.2);
-}
-
-.network-link {
-    stroke-width: 3;
-    stroke-opacity: 0.7;
 }
 
 .network-node-circle {
     stroke-width: 3;
-    stroke-opacity: 1;
+    transition: all 0.2s ease; /* Smooth transitions for hover effects */
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    fill-opacity: 0.4; /* Base fill opacity */
+}
+
+.network-link {
+    stroke-width: 3;
+    stroke-opacity: 0.7; /* Base stroke opacity */
+    transition: stroke-opacity 0.2s ease, stroke-width 0.2s ease, stroke 0.2s ease; /* Added stroke transition */
 }
 
 .network-node-text {
@@ -119,8 +118,9 @@
     font-weight: 700;
     text-anchor: middle;
     dominant-baseline: central;
-    pointer-events: none;
+    pointer-events: none; /* Do not block mouse events on the circle */
     filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.9));
+    transition: opacity 0.2s ease; /* Smooth text appearance */
 }
 
 /* Responsive Design */
