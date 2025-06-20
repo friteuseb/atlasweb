@@ -11,7 +11,8 @@
     background: var(--color-white);
     border-radius: var(--border-radius-sm);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    border: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 
 .comparison-header {
@@ -25,10 +26,15 @@
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.2s ease; /* AJOUTÉ : transition pour l'animation hover */
 }
 
 .comparison-row:last-child {
     border-bottom: none;
+}
+
+.comparison-row:hover {
+    transform: translateX(4px); /* AJOUTÉ : légère translation au hover */
 }
 
 .comparison-cell {
@@ -36,15 +42,52 @@
     font-size: 0.9rem;
     text-align: center;
     border-right: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .comparison-cell:last-child {
     border-right: none;
 }
 
+/* AJOUTÉ : Animation sur hover de la ligne */
+.comparison-row:hover .comparison-cell {
+    background-color: rgba(84, 128, 186, 0.05);
+}
+
+/* AMÉLIORÉ : Icônes avec meilleur espacement */
+.comparison-cell[data-value="true"]::before {
+    content: "✅";
+    margin-right: 8px;
+    display: inline-block;
+    animation: checkmark-pop 0.3s ease; /* AJOUTÉ : animation apparition */
+}
+
+.comparison-cell[data-value="false"]::before {
+    content: "❌";
+    margin-right: 8px;
+    display: inline-block;
+}
+
+/* AJOUTÉ : Animation pour les checkmarks */
+@keyframes checkmark-pop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .comparison-header .comparison-cell {
     font-weight: 700;
     font-family: var(--font-inter);
+    padding: 1.25rem 1rem; /* AJOUTÉ : padding légèrement plus grand pour l'header */
 }
 
 .comparison-header .comparison-cell:first-child {
@@ -56,7 +99,27 @@
     font-weight: 500;
 }
 
-/* Responsive Design */
+/* AJOUTÉ : Style spécial pour les colonnes Foundation et Premium */
+.comparison-header .comparison-cell:nth-child(2) {
+    background: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.comparison-header .comparison-cell:nth-child(3) {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* AJOUTÉ : Highlight subtil des colonnes au hover */
+.comparison-row:hover .comparison-cell:nth-child(2) {
+    background-color: rgba(143, 148, 36, 0.1);
+}
+
+.comparison-row:hover .comparison-cell:nth-child(3) {
+    background-color: rgba(84, 128, 186, 0.1);
+}
+
+/* AMÉLIORÉ : Responsive Design */
 @media (max-width: 768px) {
     .comparison-header,
     .comparison-row {
@@ -66,5 +129,20 @@
     .comparison-cell {
         border-right: none;
         border-bottom: 1px solid rgba(0,0,0,0.1);
+        text-align: left; /* AJOUTÉ : alignement gauche sur mobile */
+        padding: 0.75rem; /* AJOUTÉ : padding réduit sur mobile */
+    }
+    
+    /* AJOUTÉ : Pas de translation sur mobile pour éviter le débordement */
+    .comparison-row:hover {
+        transform: none;
+    }
+    
+    /* AJOUTÉ : Header labels sur mobile */
+    .comparison-row .comparison-cell:not(:first-child)::after {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-right: 8px;
     }
 }

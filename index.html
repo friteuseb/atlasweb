@@ -4,6 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="ATLAS - Solution de maillage sémantique intelligent. Augmentez votre trafic SEO de +30% grâce à l'IA. Liens automatiques, optimisation continue. Compatible WordPress, TYPO3, Drupal.">    
+    <meta property="og:title" content="ATLAS - Maillage sémantique intelligent">
+    <meta property="og:description" content="Augmentez votre trafic SEO de +30% grâce à l'IA. Solution française de maillage interne automatique.">
+    <meta property="og:image" content="https://atlas.seostrategy.fr/medias/atlas-og-image.jpg">
+    <meta property="og:url" content="https://atlas.seostrategy.fr/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ATLAS - Maillage sémantique intelligent">
+    <meta name="twitter:description" content="Solution IA de maillage interne. +30% de trafic SEO garantis.">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ATLAS",
+    "description": "Solution de maillage sémantique intelligent utilisant l'IA",
+    "url": "https://atlas.seostrategy.fr",
+    "applicationCategory": "SEO Tool",
+    "operatingSystem": "Web Browser",
+    "creator": {
+        "@type": "Person",
+        "name": "Cyril Wolfangel",
+        "jobTitle": "Expert SEO & Web Sémantique"
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "1490",
+        "priceCurrency": "EUR",
+        "name": "ATLAS Foundation"
+    }
+    }
+    </script>
+
     <title>Atlas - Maillage sémantique intelligent</title>
     <link rel="canonical" href="https://atlas.seostrategy.fr/">
     <!-- Bootstrap CSS -->
@@ -29,16 +63,20 @@
         </nav>
     </header>
 
-      <section class="hero-section">
-        <div class="hero-network-background">
-            <svg id="hero-network" width="100%" height="100%"></svg>
+    <!-- Hero section améliorée -->
+    <section class="hero-section" aria-label="Page d'accueil ATLAS">
+        <div class="hero-network-background" aria-hidden="true" role="presentation">
+            <svg id="hero-network" width="100%" height="100%" aria-label="Animation de réseau sémantique décorative"></svg>
         </div>
         
+        <!-- Contenu avec meilleure structure -->
         <div class="container hero-content-wrapper">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-image text-center mb-4 mb-lg-0">
-                        <img src="/medias/hero-illustration.svg" alt="Maillage sémantique" class="img-fluid">
+                        <img src="/medias/hero-illustration.svg" 
+                            alt="Illustration représentant un réseau de liens sémantiques connectant différents contenus web" 
+                            class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -48,12 +86,18 @@
                             Optimisez simultanément pour l'humain, Google et l'IA :<br>
                             la stratégie de contenus qui prépare votre site au futur du web.
                         </p>
-                        <a href="#contact" class="btn btn-primary btn-lg">Demander une démo gratuite</a>
+                        <a href="#contact" class="btn btn-primary btn-lg" 
+                        aria-describedby="cta-description">
+                            Demander une démo gratuite
+                        </a>
+                        <span id="cta-description" class="sr-only">
+                            Ouvre le formulaire de contact pour demander une démonstration personnalisée
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+</section>
 
     <script>
         // Configuration de l'animation de réseau
@@ -590,18 +634,18 @@
                     </div>
                     <div class="comparison-row">
                         <div class="comparison-cell">Budget maintenance</div>
-                        <div class="comparison-cell">0€</div>
+                        <div class="comparison-cell" data-value="true">0€</div>
                         <div class="comparison-cell">279€/mois</div>
                     </div>
                     <div class="comparison-row">
                         <div class="comparison-cell">ROI attendu</div>
                         <div class="comparison-cell">Immédiat</div>
-                        <div class="comparison-cell">Long terme supérieur</div>
+                        <div class="comparison-cell" data-value="true">Long terme supérieur</div>
                     </div>
                     <div class="comparison-row">
                         <div class="comparison-cell">Engagement utilisateur</div>
                         <div class="comparison-cell">+10%</div>
-                        <div class="comparison-cell">+30%</div>
+                        <div class="comparison-cell" data-value="true">+30%</div>
                     </div>
                 </div>
             </div>
@@ -1002,7 +1046,7 @@
                         <p>
                             ATLAS repose sur des années de recherche en web sémantique, menées par notre fondateur, 
                             Cyril Wolfangel. En 2025, ses travaux sur la suggestion de similarités sémantiques ont été 
-                            présentés à la 25e Conférence sur l'Extraction et la Gestion des Connaissances (EGC 2025). 
+                            présentés à la <a href="https://www.egc2025.cnrs.fr/articles-acceptes/">25e Conférence sur l'Extraction et la Gestion des Connaissances (EGC 2025).</a> 
                             Cette recherche a permis de créer les bases de notre solution, exploite les technologies 
                             NLP (Natural Language Processing) pour connecter vos contenus de manière pertinente, 
                             maximisant votre SEO et l'expérience utilisateur.
