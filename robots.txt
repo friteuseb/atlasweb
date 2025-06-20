@@ -1,0 +1,90 @@
+# Robots.txt pour ATLAS - Maillage sémantique intelligent
+# https://www.atlas-semantic.com/robots.txt
+
+# Agent utilisateur par défaut
+User-agent: *
+
+# Pages autorisées (indexation normale)
+Allow: /
+Allow: /css/
+Allow: /medias/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+
+# Pages interdites (ne pas indexer)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /backup/
+Disallow: /*.log
+Disallow: /error/
+Disallow: /404/
+Disallow: /maintenance/
+
+# Fichiers système à ne pas indexer
+Disallow: /.git/
+Disallow: /.env
+Disallow: /config/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /package.json
+Disallow: /composer.json
+
+# Paramètres d'URL à éviter
+Disallow: /*?print=*
+Disallow: /*?debug=*
+Disallow: /*?test=*
+Disallow: /*&print=*
+Disallow: /*&debug=*
+Disallow: /*&test=*
+
+# Bots spécifiques - Configuration pour les moteurs de recherche principaux
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Limitation pour les bots gourmands
+User-agent: CCBot
+Crawl-delay: 10
+
+User-agent: GPTBot
+Crawl-delay: 10
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# Bots malveillants couramment bloqués
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Emplacement du sitemap XML
+Sitemap: https://www.atlas-semantic.com/sitemap.xml
+
+# Notes :
+# - Ce fichier doit être placé à la racine du site : https://www.atlas-semantic.com/robots.txt
+# - Modifiez l'URL du domaine selon votre configuration
+# - Pensez à créer et maintenir un sitemap.xml
+# - Vérifiez régulièrement ce fichier dans Google Search Console
