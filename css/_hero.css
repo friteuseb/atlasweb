@@ -1,24 +1,132 @@
-/* Styles for hero */
 
-/* Hero Section */
+/* Hero Section avec animation de fond */
 .hero-section {
     padding-top: 120px;
     padding-bottom: 48px;
     background: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-network-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-image {
+    /* Pas de fond - laisse l'animation visible */
+}
+
+.hero-content {
+    /* Pas de fond - laisse l'animation visible */
 }
 
 .hero-image img {
     max-width: 100%;
     height: auto;
+    filter: drop-shadow(0 10px 30px rgba(84, 128, 186, 0.3));
 }
 
 .hero-content {
     padding: 2rem 0;
 }
 
+/* Améliorer la lisibilité du texte sur l'animation */
+.hero-title {
+    font-family: var(--font-arvo);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--color-black);
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
+    color: var(--color-black);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Typography */
+/* Styles déplacés vers les sections spécifiques hero-title et hero-subtitle */
+
+/* Buttons */
+.btn {
+    border-radius: var(--border-radius-lg);
+    font-weight: 500;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: #4a73a8;
+    border-color: #4a73a8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(84, 128, 186, 0.3);
+}
+
+.btn-outline-dark {
+    border-radius: 0;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    text-transform: capitalize;
+}
+
+/* Animation des nœuds */
+.network-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.network-node:hover {
+    transform: scale(1.2);
+}
+
+.network-link {
+    stroke-width: 3;
+    stroke-opacity: 0.7;
+}
+
+.network-node-circle {
+    stroke-width: 3;
+    stroke-opacity: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.network-node-text {
+    font-family: var(--font-inter);
+    font-size: 13px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.9));
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-section {
         padding-top: 100px;
+        text-align: center;
     }
 }
