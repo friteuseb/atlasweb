@@ -141,6 +141,130 @@
         .hero-network-background{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;opacity:0.4}
     </style>
 
+    <!-- Preconnect pour GA4 (gain de performance) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
+    <!-- Google Analytics 4 - Chargement différé -->
+    <script>
+    window.GA_MEASUREMENT_ID = 'G-MQSD0PZMC5'; // REMPLACEZ ICI
+
+    // Fonction de chargement différé
+    function loadGA4() {
+        // Créer le script gtag
+        const gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${window.GA_MEASUREMENT_ID}`;
+        
+        // Initialiser gtag dès le chargement
+        gtagScript.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', window.GA_MEASUREMENT_ID, {
+                // Configuration optimisée
+                send_page_view: true,
+                anonymize_ip: true, // RGPD
+                allow_google_signals: false, // Performance
+                allow_ad_personalization_signals: false, // RGPD
+                // Événements spécifiques ATLAS
+                custom_map: {
+                    'custom_parameter_1': 'section_viewed',
+                    'custom_parameter_2': 'demo_requested'
+                }
+            });
+            
+            // Événements personnalisés ATLAS
+            setupAtlasTracking();
+        };
+        
+        document.head.appendChild(gtagScript);
+    }
+
+    // Événements spécifiques à ATLAS
+    function setupAtlasTracking() {
+        // Track scroll depth
+        let scrollTracked = false;
+        window.addEventListener('scroll', function() {
+            if (!scrollTracked && window.scrollY > window.innerHeight * 0.5) {
+                gtag('event', 'scroll_50_percent', {
+                    event_category: 'Engagement',
+                    event_label: 'Page Scroll 50%'
+                });
+                scrollTracked = true;
+            }
+        });
+        
+        // Track CTA clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.btn-primary, [href="#contact"]')) {
+                gtag('event', 'cta_click', {
+                    event_category: 'Conversion',
+                    event_label: e.target.textContent.trim(),
+                    value: 1
+                });
+            }
+        });
+        
+        // Track animation interaction (D3.js)
+        if (window.d3) {
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.matches('.network-node-circle')) {
+                    gtag('event', 'animation_interaction', {
+                        event_category: 'Engagement',
+                        event_label: 'D3 Network Hover'
+                    });
+                }
+            });
+        }
+        
+        // Track form interactions (Tally)
+        const tallyFrame = document.querySelector('iframe[data-tally-src]');
+        if (tallyFrame) {
+            tallyFrame.addEventListener('load', function() {
+                gtag('event', 'form_view', {
+                    event_category: 'Lead Generation',
+                    event_label: 'Contact Form Loaded'
+                });
+            });
+        }
+    }
+
+    // Chargement différé après LCP
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attendre 2 secondes après le DOM pour ne pas impacter les performances
+            setTimeout(loadGA4, 2000);
+        });
+    } else {
+        setTimeout(loadGA4, 2000);
+    }
+
+    // Alternative : chargement au premier scroll ou interaction
+    let gaLoaded = false;
+    function loadGAOnInteraction() {
+        if (!gaLoaded) {
+            gaLoaded = true;
+            loadGA4();
+            // Supprimer les event listeners
+            window.removeEventListener('scroll', loadGAOnInteraction);
+            window.removeEventListener('click', loadGAOnInteraction);
+            window.removeEventListener('touchstart', loadGAOnInteraction);
+        }
+    }
+
+    // Charger GA au premier scroll ou clic
+    window.addEventListener('scroll', loadGAOnInteraction, { passive: true, once: true });
+    window.addEventListener('click', loadGAOnInteraction, { once: true });
+    window.addEventListener('touchstart', loadGAOnInteraction, { passive: true, once: true });
+    </script>
+
+    <!-- Fallback pour le suivi sans JavaScript -->
+    <noscript>
+        <img src="https://www.google-analytics.com/collect?v=1&tid=G-XXXXXXXXXX&t=pageview&dp=%2F" style="display:none">
+    </noscript>
+
+
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
