@@ -1,0 +1,229 @@
+/* Styles for contact form */
+
+/* Contact Section */
+.contact-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--color-gray-light) 0%, #f0f4f8 100%);
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235480BA' fill-opacity='0.03'%3E%3Ccircle cx='9' cy='9' r='1'/%3E%3Ccircle cx='49' cy='49' r='1'/%3E%3Ccircle cx='19' cy='39' r='1'/%3E%3Ccircle cx='39' cy='19' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.contact-content {
+    padding-right: 2rem;
+}
+
+.contact-benefits {
+    margin: 2rem 0;
+}
+
+.contact-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.benefit-icon-small {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.benefit-text {
+    line-height: 1.4;
+}
+
+.contact-info {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+    margin-top: 2rem;
+}
+
+.contact-item {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Form Styles */
+.contact-form-container {
+    background: var(--color-white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.contact-form {
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafbfc;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: var(--color-white);
+    box-shadow: 0 0 0 3px rgba(84, 128, 186, 0.1);
+}
+
+.form-control::placeholder {
+    color: #64748b;
+    opacity: 1;
+}
+
+select.form-control {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.form-check-input {
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.form-check-label {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #4a5568;
+}
+
+.btn.w-100 {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-loading.d-none {
+    display: none !important;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Success/Error Messages */
+.success-message, .error-message {
+    background: var(--color-white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.success-message {
+    border-left: 4px solid var(--color-success);
+}
+
+.error-message {
+    border-left: 4px solid #DC3545;
+}
+
+.success-icon, .error-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.success-content h3, .error-content h3 {
+    font-family: var(--font-arvo);
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+}
+
+.success-content p, .error-content p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Loading Animation */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Form Validation Styles */
+.form-control.is-invalid {
+    border-color: #DC3545;
+    background: #fef2f2;
+}
+
+.form-control.is-valid {
+    border-color: var(--color-success);
+    background: #f0fdf4;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #DC3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-content {
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+    
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+    
+    .contact-info {
+        margin-top: 1.5rem;
+    }
+}

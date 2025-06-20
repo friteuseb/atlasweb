@@ -48,7 +48,7 @@
                             Optimisez simultanément pour l'humain, Google et l'IA :<br>
                             la stratégie de contenus qui prépare votre site au futur du web.
                         </p>
-                        <a href="#demo" class="btn btn-primary btn-lg">Demander une démo gratuite</a>
+                        <a href="#contact" class="btn btn-primary btn-lg">Demander une démo gratuite</a>
                     </div>
                 </div>
             </div>
@@ -1045,6 +1045,113 @@
             </div>
         </div>
     </section>
+
+
+ <!-- Contact Section avec Tally -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="contact-content">
+                    <h2 class="section-title">Prêt à transformer votre SEO ?</h2>
+                    <p class="section-subtitle">
+                        Obtenez une analyse gratuite de votre maillage interne et découvrez 
+                        comment ATLAS peut booster votre trafic.
+                    </p>
+                    
+                    <div class="contact-benefits">
+                        <div class="contact-benefit">
+                            <div class="benefit-icon-small">🚀</div>
+                            <div class="benefit-text">
+                                <strong>Audit gratuit</strong><br>
+                                Analyse complète de votre structure de liens
+                            </div>
+                        </div>
+                        <div class="contact-benefit">
+                            <div class="benefit-icon-small">📊</div>
+                            <div class="benefit-text">
+                                <strong>Démo personnalisée</strong><br>
+                                Découvrez ATLAS en action sur votre site
+                            </div>
+                        </div>
+                        <div class="contact-benefit">
+                            <div class="benefit-icon-small">💡</div>
+                            <div class="benefit-text">
+                                <strong>Conseils d'expert</strong><br>
+                                Stratégie SEO adaptée à vos objectifs
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Cyril Wolfangel</strong><br>
+                            Expert SEO & Web Sémantique
+                        </div>
+                        <div class="contact-item">
+                            📍 Amiens, Île-de-France<br>
+                            🇫🇷 Solution 100% française
+                        </div>
+                        <div class="contact-item">
+                            ⏱️ <strong>Réponse sous 24h ouvrées</strong><br>
+                            📧 cyril.wolfangel@talan.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="tally-form-container">
+                    <!-- Votre formulaire Tally -->
+                    <iframe 
+                        data-tally-src="https://tally.so/embed/npXvYb?hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                        loading="lazy" 
+                        width="100%" 
+                        height="600" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        title="Contact ATLAS by Talan">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script Tally -->
+<script>
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+
+// Analytics pour Tally
+document.addEventListener('DOMContentLoaded', function() {
+    // Tracker l'affichage du formulaire
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_view', {
+            'event_category': 'Contact',
+            'event_label': 'Tally Form - ATLAS Contact'
+        });
+    }
+    
+    // Écouter les interactions avec le formulaire
+    const tallyContainer = document.querySelector('.tally-form-container');
+    if (tallyContainer) {
+        tallyContainer.addEventListener('click', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_interaction', {
+                    'event_category': 'Contact',
+                    'event_label': 'Tally Form Click'
+                });
+            }
+        });
+    }
+    
+    // Log de confirmation de chargement
+    setTimeout(() => {
+        console.log('Formulaire ATLAS Tally chargé avec succès');
+    }, 2000);
+});
+</script>
 
     <!-- About Section -->
     <section class="about-section">
