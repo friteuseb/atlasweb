@@ -94,7 +94,7 @@
                     '#45B7D1'  
                 ];
 
-                this.nodes = nodeTerms.map((term, i) => ({
+                this.nodes = nodeTerms.slice(0, 20).map((term, i) => ({ // Example: Use only the first 20 terms
                     id: i,
                     name: term,
                     x: Math.random() * this.width,
@@ -632,7 +632,7 @@
     <section class="transformation-section">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="section-title">De la Fragmentation à l'Unification</h2>
+                <h2 class="section-title">De la fragmentation à l'unification</h2>
                 <p class="section-subtitle">ATLAS transforme vos contenus publics en écosystème interconnecté</p>
             </div>
 
@@ -717,7 +717,7 @@
                 <!-- Mission de service public -->
                 <div>
                     <h3 style="font-family: var(--font-arvo); font-size: 1.75rem; margin-bottom: 1.5rem;">
-                        Une Mission de Service Public
+                        Une mission de service public
                     </h3>
                     <p style="margin-bottom: 1.5rem;">
                         ATLAS ne vise pas la performance commerciale, mais <strong>l'efficacité publique</strong>. 
