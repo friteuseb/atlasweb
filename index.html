@@ -125,31 +125,47 @@
         }
     }
     </script>
-
     <!-- CSS Critical Path -->
     <style>
         /* Critical CSS inline pour le fold */
-        .header-fixed{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-        .hero-section{padding-top:120px;min-height:80vh;display:flex;align-items:center;background:#fff}
-        .hero-title{font-family:'Arvo',serif;font-size:clamp(2rem,5vw,4rem);color:#000;line-height:1.2}
-        .btn-primary{background:#5480BA;border-color:#5480BA;border-radius:40px;padding:1rem 2rem}
+        :root{--color-primary:#5480BA;--color-white:#FFF;--color-black:#000;--font-arvo:'Arvo',serif;--border-radius-lg:40px;--shadow-sm:0 2px 8px rgba(0,0,0,0.1)}
+        .header-fixed{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--color-white);box-shadow:var(--shadow-sm)}
+        .navbar{padding:1rem 0}
+        .navbar-brand img{height:44px;width:auto}
+        .hero-section{padding-top:120px;min-height:80vh;display:flex;align-items:center;background:var(--color-white);position:relative;overflow:hidden}
+        .hero-content-wrapper{position:relative;z-index:10;min-height:calc(100vh - 168px);display:flex;align-items:center}
+        .hero-title{font-family:var(--font-arvo);font-size:clamp(2rem,5vw,4rem);color:var(--color-black);line-height:1.2;margin-bottom:1.5rem;text-shadow:0 2px 8px rgba(255,255,255,0.8)}
+        .hero-subtitle{font-size:clamp(1rem,2.5vw,1.375rem);color:var(--color-black);margin-bottom:2rem;line-height:1.4;text-shadow:0 1px 4px rgba(255,255,255,0.8)}
+        .btn{border-radius:var(--border-radius-lg);font-weight:500;padding:1rem 2rem;font-size:1.125rem;transition:all 0.3s ease}
+        .btn-primary{background-color:var(--color-primary);border-color:var(--color-primary)}
+        .hero-network-background{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;opacity:0.4}
     </style>
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts with display=swap for performance -->
+
+    <!-- Google Fonts with display=swap -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Inter:wght@400;500;700&family=Arvo:wght@400&display=swap" rel="stylesheet">
-    
-    <!-- D3.js - Load async for better performance -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" async></script>
-    
-    <!-- Custom CSS -->
-    <link href="styles.css" rel="stylesheet">
-    
+
     <!-- Preload key resources -->
     <link rel="preload" href="/medias/hero-illustration.svg" as="image">
     <link rel="preload" href="/medias/logo-atlas.svg" as="image">
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+    <!-- D3.js - Defer loading -->
+    <script>
+    // Charge D3.js de manière non-bloquante
+    const d3Script = document.createElement('script');
+    d3Script.src = 'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    d3Script.async = true;
+    document.head.appendChild(d3Script);
+    </script>
 </head>
 
 <body>
