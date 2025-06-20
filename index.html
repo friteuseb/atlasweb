@@ -94,12 +94,13 @@
                     '#45B7D1'  
                 ];
 
-                this.nodes = nodeTerms.slice(0, 20).map((term, i) => ({ // Example: Use only the first 20 terms
+                this.nodes = nodeTerms.slice(0, 12).map((term, i) => ({
                     id: i,
                     name: term,
                     x: Math.random() * this.width,
                     y: Math.random() * this.height,
-                    color: colors[i % colors.length] 
+                    color: colors[i % colors.length]
+
                 }));
 
                 this.links = [];
@@ -482,6 +483,7 @@
     </section>
 
     <!-- Solutions Section -->
+     
     <section class="solutions-section">
         <div class="container">
             <div class="text-center mb-5">
@@ -516,7 +518,7 @@
                             </div>
                             <div class="result-item">
                                 <span class="result-label">Implémentation :</span>
-                                <span class="result-value">1-2 semaines</span>
+                                <span class="result-value">1 semaines</span>
                             </div>
                             <div class="result-item">
                                 <span class="result-label">Maintenance :</span>
@@ -553,7 +555,7 @@
                             <h4>Résultats Typiques</h4>
                             <div class="result-item">
                                 <span class="result-label">Boost trafic</span>
-                                <span class="result-value">+15% à +25%</span>
+                                <span class="result-value">+20% à +50%</span>
                             </div>
                             <div class="result-item">
                                 <span class="result-label">Implémentation :</span>
@@ -561,7 +563,7 @@
                             </div>
                             <div class="result-item">
                                 <span class="result-label">Maintenance :</span>
-                                <span class="result-value">0€/mois</span>
+                                <span class="result-value">279€/mois</span>
                             </div>
                         </div>
                         <div class="solution-pricing">
@@ -589,7 +591,7 @@
                     <div class="comparison-row">
                         <div class="comparison-cell">Budget maintenance</div>
                         <div class="comparison-cell">0€</div>
-                        <div class="comparison-cell">179€/mois</div>
+                        <div class="comparison-cell">279€/mois</div>
                     </div>
                     <div class="comparison-row">
                         <div class="comparison-cell">ROI attendu</div>

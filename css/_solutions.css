@@ -1,9 +1,10 @@
-/* Styles for solutions */
+/* Styles for solutions - VERSION AMÉLIORÉE */
 
 /* Solutions Section */
 .solutions-section {
     padding: 4rem 0;
     background: var(--color-gray-light);
+    position: relative;
 }
 
 .solution-card {
@@ -11,17 +12,97 @@
     border-radius: var(--border-radius);
     padding: 2rem;
     height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+/* NOUVEAU : Animation de fond au hover */
+.solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(84, 128, 186, 0.02) 100%);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.solution-card:hover::before {
+    opacity: 1;
 }
 
 .solution-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-md);
+    border-color: rgba(84, 128, 186, 0.2);
 }
 
+/* NOUVEAU : Badge Foundation avec style distinctif */
+.solution-foundation {
+    border-color: var(--color-secondary);
+    position: relative;
+}
+
+.solution-foundation::after {
+    content: '🚀 DÉMARRAGE';
+    position: absolute;
+    top: -5px; 
+    left: 2rem;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #7a8320 100%);
+    color: var(--color-white);
+    padding: 4px 12px; /* Réduit le padding vertical */
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 16px; /* Légèrement moins arrondi */
+    box-shadow: 0 2px 8px rgba(143, 148, 36, 0.3); /* Shadow réduite */
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+/* NOUVEAU : Badge Premium avec animation */
 .solution-premium {
     background: var(--color-primary);
     color: var(--color-white);
+    border-color: #ff6b35;
+    position: relative;
+}
+
+.solution-premium::after {
+    content: '🔥 POPULAIRE';
+    position: absolute;
+    top: -5px; 
+    left: 2rem;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: var(--color-white);
+    padding: 4px 12px; /* Réduit le padding vertical */
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 16px; /* Légèrement moins arrondi */
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4); /* Shadow réduite */
+    letter-spacing: 0.5px;
+    z-index: 10;
+    animation: pulse-glow 2s infinite;
+}
+
+/* NOUVEAU : Animation du badge populaire */
+@keyframes pulse-glow {
+    0% { 
+        box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4); 
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.5); 
+        transform: scale(1.01); /* Moins d'agrandissement */
+    }
+    100% { 
+        box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4); 
+        transform: scale(1);
+    }
 }
 
 .solution-header {
@@ -31,9 +112,15 @@
     margin-bottom: 1.5rem;
 }
 
+/* NOUVEAU : Animation de l'icône au hover */
 .solution-icon img {
     max-width: 107px;
     height: auto;
+    transition: transform 0.3s ease;
+}
+
+.solution-card:hover .solution-icon img {
+    transform: scale(1.05) rotate(2deg);
 }
 
 .solution-name {
@@ -51,12 +138,23 @@
     margin: 0;
 }
 
+/* NOUVEAU : Style amélioré pour le sous-titre */
 .solution-subtitle {
     font-family: var(--font-inter);
     font-weight: 700;
     font-size: clamp(1.125rem, 2vw, 1.375rem);
     margin-bottom: 1.5rem;
     color: inherit;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.solution-premium .solution-subtitle {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.2);
 }
 
 .solution-features {
@@ -65,37 +163,90 @@
     margin-bottom: 2rem;
 }
 
+/* NOUVEAU : Features avec icônes et animations */
 .solution-features li {
     position: relative;
-    padding-left: 2rem;
+    padding-left: 2.5rem;
     margin-bottom: 0.75rem;
     font-size: 0.9rem;
     line-height: 1.4;
+    transition: transform 0.2s ease, padding-left 0.2s ease;
 }
 
+.solution-features li:hover {
+    transform: translateX(4px);
+    padding-left: 2.8rem;
+}
+
+/* NOUVEAU : Icônes personnalisées pour les features */
 .solution-features li::before {
-    content: '✓';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--color-secondary);
+    top: 0.2rem;
+    width: 18px;
+    height: 18px;
+    background: var(--color-success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.solution-features li::after {
+    content: '✓';
+    position: absolute;
+    left: 5px;
+    top: 0.2rem;
+    color: white;
     font-weight: bold;
+    font-size: 11px;
+    line-height: 18px;
+}
+
+.solution-features li:hover::before {
+    transform: scale(1.1);
 }
 
 .solution-premium .solution-features li::before {
-    color: var(--color-white);
+    background: var(--color-white);
 }
 
+.solution-premium .solution-features li::after {
+    color: var(--color-primary);
+}
+
+/* NOUVEAU : Animation pour les résultats */
 .solution-results {
     background: var(--color-primary);
     color: var(--color-white);
     padding: 1.5rem;
     border-radius: var(--border-radius-sm);
     margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.solution-results::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.solution-card:hover .solution-results::before {
+    left: 100%;
 }
 
 .solution-results-premium {
-    background: var(--color-white);
+    background: rgba(255,255,255,0.95);
     color: var(--color-black);
+    backdrop-filter: blur(10px);
 }
 
 .solution-results h4 {
@@ -106,12 +257,19 @@
     text-align: center;
 }
 
+/* NOUVEAU : Style amélioré pour les items de résultats */
 .result-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.5rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.2);
     font-size: 0.9rem;
+    transition: padding-left 0.2s ease;
+}
+
+.result-item:hover {
+    padding-left: 0.5rem;
 }
 
 .solution-results-premium .result-item {
@@ -126,8 +284,23 @@
     font-weight: normal;
 }
 
+/* NOUVEAU : Style amélioré pour les valeurs */
 .result-value {
     font-weight: 700;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    transition: transform 0.2s ease;
+}
+
+.result-item:hover .result-value {
+    transform: scale(1.05);
+}
+
+.solution-results-premium .result-value {
+    background: var(--color-primary);
+    color: white;
 }
 
 .solution-pricing {
@@ -140,9 +313,19 @@
     margin-bottom: 0.5rem;
 }
 
+/* NOUVEAU : Style gradient pour le prix */
 .price-amount {
     font-size: 1.75rem;
     font-weight: bold;
+    background: linear-gradient(135deg, currentColor 0%, rgba(84, 128, 186, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform 0.2s ease;
+}
+
+.solution-card:hover .price-amount {
+    transform: scale(1.05);
 }
 
 .price-details {
@@ -157,10 +340,35 @@
         text-align: center;
         gap: 1rem;
     }
+    
+    /* NOUVEAU : Ajustement des badges sur mobile */
+    .solution-foundation::after,
+    .solution-premium::after {
+        left: 1rem;
+        font-size: 0.7rem;
+        padding: 4px 12px;
+    }
 }
 
 @media (max-width: 576px) {
     .solution-card {
         margin-bottom: 2rem;
+    }
+    
+    /* NOUVEAU : Espacement réduit pour mobile */
+    .solution-features li {
+        padding-left: 2rem;
+        font-size: 0.85rem;
+    }
+    
+    .solution-features li::before {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .solution-features li::after {
+        left: 4px;
+        font-size: 10px;
+        line-height: 16px;
     }
 }
