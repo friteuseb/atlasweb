@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur Image OG - ATLAS</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #5480BA;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: grid;
+            gap: 15px;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        label {
+            min-width: 120px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input, select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            flex: 1;
+        }
+        
+        input:focus, select:focus {
+            border-color: #5480BA;
+            outline: none;
+        }
+        
+        .color-input {
+            width: 50px !important;
+            height: 40px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #5480BA 0%, #4a73a8 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 10px 5px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .preview {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        canvas {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .info {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #5480BA;
+            margin: 20px 0;
+        }
+        
+        .specs {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Générateur d'image OG - ATLAS</h1>
+        
+        <div class="info">
+            <strong>📋 Spécifications :</strong> Image 1200x630px optimisée pour Facebook, Twitter, LinkedIn
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Titre principal :</label>
+                <input type="text" id="mainTitle" value="ATLAS" maxlength="20">
+            </div>
+            
+            <div class="control-group">
+                <label>Sous-titre :</label>
+                <input type="text" id="subtitle" value="Maillage sémantique intelligent" maxlength="40">
+            </div>
+            
+            <div class="control-group">
+                <label>Bénéfice 1 :</label>
+                <input type="text" id="benefit1" value="+30% de trafic SEO garanti" maxlength="35">
+            </div>
+            
+            <div class="control-group">
+                <label>Bénéfice 2 :</label>
+                <input type="text" id="benefit2" value="Solution 100% française" maxlength="35">
+            </div>
+            
+            <div class="control-group">
+                <label>Bénéfice 3 :</label>
+                <input type="text" id="benefit3" value="Compatible WordPress, TYPO3, Drupal" maxlength="35">
+            </div>
+            
+            <div class="control-group">
+                <label>URL :</label>
+                <input type="text" id="url" value="atlas.seostrategy.fr" maxlength="30">
+            </div>
+            
+            <div class="control-group">
+                <label>Couleur primaire :</label>
+                <input type="color" id="primaryColor" value="#5480BA" class="color-input">
+            </div>
+            
+            <div class="control-group">
+                <label>Style :</label>
+                <select id="style">
+                    <option value="modern">Moderne avec dégradé</option>
+                    <option value="minimal">Minimal et épuré</option>
+                    <option value="tech">Tech avec réseau</option>
+                </select>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button onclick="generateImage()">🎨 Générer l'image</button>
+            <button onclick="downloadImage()" id="downloadBtn" style="display: none;">📥 Télécharger</button>
+            <button onclick="copyToClipboard()" id="copyBtn" style="display: none;">📋 Copier</button>
+        </div>
+        
+        <div class="preview">
+            <canvas id="canvas" width="1200" height="630"></canvas>
+        </div>
+        
+        <div class="specs">
+            Dimensions : 1200×630px • Format : PNG • Optimisé pour réseaux sociaux
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function generateImage() {
+            const config = {
+                mainTitle: document.getElementById('mainTitle').value,
+                subtitle: document.getElementById('subtitle').value,
+                benefit1: document.getElementById('benefit1').value,
+                benefit2: document.getElementById('benefit2').value,
+                benefit3: document.getElementById('benefit3').value,
+                url: document.getElementById('url').value,
+                primaryColor: document.getElementById('primaryColor').value,
+                style: document.getElementById('style').value
+            };
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, 1200, 630);
+            
+            // Background
+            drawBackground(config);
+            
+            // Content
+            drawContent(config);
+            
+            // Show download buttons
+            document.getElementById('downloadBtn').style.display = 'inline-block';
+            document.getElementById('copyBtn').style.display = 'inline-block';
+        }
+        
+        function drawBackground(config) {
+            if (config.style === 'modern') {
+                // Gradient background
+                const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+                gradient.addColorStop(0, config.primaryColor);
+                gradient.addColorStop(1, '#ffffff');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 1200, 630);
+                
+                // Overlay pattern
+                ctx.globalAlpha = 0.1;
+                drawNetworkPattern();
+                ctx.globalAlpha = 1;
+                
+            } else if (config.style === 'minimal') {
+                // Clean white background
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, 1200, 630);
+                
+                // Subtle border
+                ctx.strokeStyle = config.primaryColor;
+                ctx.lineWidth = 8;
+                ctx.strokeRect(40, 40, 1120, 550);
+                
+            } else if (config.style === 'tech') {
+                // Dark tech background
+                ctx.fillStyle = '#1a1a1a';
+                ctx.fillRect(0, 0, 1200, 630);
+                
+                // Animated network
+                ctx.globalAlpha = 0.3;
+                drawTechNetwork(config.primaryColor);
+                ctx.globalAlpha = 1;
+            }
+        }
+        
+        function drawContent(config) {
+            // Logo area (top right)
+            ctx.fillStyle = config.style === 'tech' ? '#ffffff' : '#333333';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'right';
+            ctx.fillText('by TALAN', 1120, 60);
+            
+            // Main title
+            ctx.fillStyle = config.style === 'tech' ? '#ffffff' : '#333333';
+            ctx.font = 'bold 120px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText(config.mainTitle, 80, 180);
+            
+            // Subtitle
+            ctx.fillStyle = config.primaryColor;
+            ctx.font = 'normal 40px Arial';
+            ctx.fillText(config.subtitle, 80, 240);
+            
+            // Benefits
+            const benefits = [config.benefit1, config.benefit2, config.benefit3];
+            ctx.fillStyle = config.style === 'tech' ? '#ffffff' : '#333333';
+            ctx.font = 'normal 32px Arial';
+            
+            benefits.forEach((benefit, index) => {
+                const y = 320 + (index * 50);
+                
+                // Checkmark
+                ctx.fillStyle = '#28A745';
+                ctx.font = 'bold 28px Arial';
+                ctx.fillText('✓', 80, y);
+                
+                // Benefit text
+                ctx.fillStyle = config.style === 'tech' ? '#ffffff' : '#333333';
+                ctx.font = 'normal 28px Arial';
+                ctx.fillText(benefit, 120, y);
+            });
+            
+            // URL
+            ctx.fillStyle = config.primaryColor;
+            ctx.font = 'bold 36px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(config.url, 600, 580);
+            
+            // Decorative elements
+            if (config.style !== 'minimal') {
+                drawDecorations(config);
+            }
+        }
+        
+        function drawNetworkPattern() {
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            
+            // Draw connected dots pattern
+            for (let i = 0; i < 20; i++) {
+                const x = Math.random() * 1200;
+                const y = Math.random() * 630;
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Connect to nearby dots
+                for (let j = 0; j < 3; j++) {
+                    const x2 = x + (Math.random() - 0.5) * 200;
+                    const y2 = y + (Math.random() - 0.5) * 200;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        function drawTechNetwork(color) {
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = 2;
+            
+            // Create network nodes
+            const nodes = [];
+            for (let i = 0; i < 15; i++) {
+                nodes.push({
+                    x: Math.random() * 1200,
+                    y: Math.random() * 630,
+                    size: 3 + Math.random() * 5
+                });
+            }
+            
+            // Draw connections
+            nodes.forEach((node, i) => {
+                nodes.forEach((otherNode, j) => {
+                    if (i !== j) {
+                        const distance = Math.sqrt(
+                            Math.pow(node.x - otherNode.x, 2) + 
+                            Math.pow(node.y - otherNode.y, 2)
+                        );
+                        
+                        if (distance < 200) {
+                            ctx.globalAlpha = 0.1;
+                            ctx.beginPath();
+                            ctx.moveTo(node.x, node.y);
+                            ctx.lineTo(otherNode.x, otherNode.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+                
+                // Draw node
+                ctx.globalAlpha = 0.6;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            ctx.globalAlpha = 1;
+        }
+        
+        function drawDecorations(config) {
+            // Add some geometric shapes
+            ctx.fillStyle = config.primaryColor + '20'; // 20% opacity
+            
+            // Circle decoration
+            ctx.beginPath();
+            ctx.arc(950, 150, 60, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Rectangle decoration
+            ctx.fillRect(850, 400, 200, 8);
+            
+            // Link icons
+            ctx.fillStyle = config.primaryColor;
+            ctx.font = 'bold 40px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🔗', 1000, 300);
+            ctx.fillText('📊', 900, 400);
+            ctx.fillText('🚀', 1100, 350);
+        }
+        
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'atlas-og-image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        async function copyToClipboard() {
+            try {
+                canvas.toBlob(async (blob) => {
+                    const item = new ClipboardItem({ 'image/png': blob });
+                    await navigator.clipboard.write([item]);
+                    alert('✅ Image copiée dans le presse-papiers !');
+                });
+            } catch (err) {
+                alert('❌ Impossible de copier l\'image. Utilisez le bouton Télécharger.');
+            }
+        }
+        
+        // Generate initial image
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(generateImage, 100);
+        });
+        
+        // Auto-regenerate on input change
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('input', () => {
+                setTimeout(generateImage, 100);
+            });
+        });
+    </script>
+</body>
+</html>
