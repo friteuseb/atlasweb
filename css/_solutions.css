@@ -49,7 +49,7 @@
 }
 
 .solution-foundation::after {
-    content: '🚀 DÉMARRAGE';
+    content: '🚀 ESSENTIEL';
     position: absolute;
     top: -5px; 
     left: 2rem;
@@ -73,7 +73,7 @@
 }
 
 .solution-premium::after {
-    content: '🔥 POPULAIRE';
+    content: '🔥 PREMIUM';
     position: absolute;
     top: -5px; 
     left: 2rem;
