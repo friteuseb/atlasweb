@@ -173,6 +173,66 @@
     background: linear-gradient(180deg, #fff 0%, #fff5f9 100%);
 }
 
+/* ---- Galerie captures plateforme ---- */
+.cs-gallery {
+    margin-top: var(--space-xl);
+}
+
+.cs-shot {
+    margin: 0;
+    background: var(--color-white);
+    border: 1px solid rgba(30, 30, 30, 0.08);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.cs-shot:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.cs-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.06);
+}
+
+.cs-shot figcaption {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+    color: #555;
+    line-height: 1.4;
+}
+
+.cs-shot figcaption b {
+    display: block;
+    font-family: var(--font-arvo);
+    color: var(--color-dark);
+    font-size: var(--text-base);
+    margin-bottom: 0.15rem;
+}
+
+.cs-shot-feature {
+    margin-bottom: var(--space-lg);
+}
+
+.cs-shot-feature figcaption {
+    font-size: var(--text-base);
+}
+
+.cs-shot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .cs-shot-grid { grid-template-columns: 1fr; }
+}
+
 /* ---- Multi-IA (4 cartes) ---- */
 .cs-ai-grid {
     display: grid;
