@@ -16,6 +16,7 @@
 @import url('/css/_about.css');
 @import url('/css/_utilities.css');
 @import url('/css/_contact.css');
+@import url('/css/_content-studio.css');
 
 /* Responsive Design (global adjustments, if any, not specific to a section) */
 @media (max-width: 768px) {
